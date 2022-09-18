@@ -20,7 +20,7 @@ jobs:
           path: path/to/file.js
           write-mode: overwrite
           contents: |
-            "${{ steps.fetch-data.outputs.test }}"
+            "${{ steps.fetch-data.outputs.data }}"
             
       - name: Commit & Push
         uses: Andro999b/push@v1.3

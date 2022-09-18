@@ -13,7 +13,7 @@ jobs:
       - name: Read Node.js version to install from `.tool-versions`
         id: fetch-data
         #run: echo '::set-output name=test::green'
-        uses: tongchen92/hello-world-javascript-action@v1.2
+        uses: tongchen92/hello-world-javascript-action@v1.3
       - name: Overwrite file
         uses: "DamianReeves/write-file-action@master"
         with:

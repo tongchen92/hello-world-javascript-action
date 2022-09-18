@@ -21,7 +21,7 @@ try {
   };
    
   let data = JSON.stringify(student);
-  core.setOutput("data", "test data");
+  core.setOutput("test", "test data");
 } catch (error) {
   core.setFailed(error.message);
 }

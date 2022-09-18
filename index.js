@@ -21,7 +21,7 @@ try {
   };
    
   let data = JSON.stringify(student);
-  fs.writeFileSync('student.json', data);
+  core.setOutput(data);
 } catch (error) {
   core.setFailed(error.message);
 }

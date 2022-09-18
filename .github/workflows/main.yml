@@ -15,6 +15,8 @@ jobs:
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
+      - name: switching from HTTPS to SSH
+        run: git remote set-url origin git@github.com:tongchen92/hello-world-javascript-action.git
       - name: stage changed files
         run: git add .
       - name: commit changed files

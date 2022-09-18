@@ -7,12 +7,12 @@ on:
     inputs:
       PERFORMER_DATA_GOOGLE_SHEET_ID:
         description: 'Google Sheet ID for Performer Data'
-        default: ${{ secrets.PERFORMER_DATA_GOOGLE_SHEET_ID }}
+        default: "${{ secrets.PERFORMER_DATA_GOOGLE_SHEET_ID }}"
         required: true
         type: string
       GOOGLESHEET_API_KEY:
         description: 'Google Sheet APIKEY'
-        default: ${{ secrets.GOOGLESHEET_API_KEY }}
+        default: "${{ secrets.GOOGLESHEET_API_KEY }}"
         required: true
         type: string
 

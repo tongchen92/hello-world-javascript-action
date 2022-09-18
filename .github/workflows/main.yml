@@ -10,14 +10,21 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
+      - name: Read Node.js version to install from `.tool-versions`
+        id: nodejs
+        run: >-
+          echo "::set-output name=NODE_VERSION::$(
+            cat .tool-versions |
+            grep nodejs |
+            sed 's/nodejs \(.*\)$/\1/'
+          )"
       - name: Overwrite file
         uses: "DamianReeves/write-file-action@master"
         with:
           path: path/to/file.js
           write-mode: overwrite
           contents: |
-            console.log('some contents')
+            "${{ steps.nodejs.outputs.NODE_VERSION }}"
             
       - name: Commit & Push
         uses: Andro999b/push@v1.3

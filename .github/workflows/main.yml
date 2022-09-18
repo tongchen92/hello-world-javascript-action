@@ -3,18 +3,6 @@ on:
   - cron:  "*/15 * * * *"
   push:
   workflow_dispatch:
-  # workflow_call:
-  #   inputs:
-  #     PERFORMER_DATA_GOOGLE_SHEET_ID:
-  #       description: 'Google Sheet ID for Performer Data'
-  #       default: "${{ secrets.PERFORMER_DATA_GOOGLE_SHEET_ID }}"
-  #       required: true
-  #       type: string
-  #     GOOGLESHEET_API_KEY:
-  #       description: 'Google Sheet APIKEY'
-  #       default: "${{ secrets.GOOGLESHEET_API_KEY }}"
-  #       required: true
-  #       type: string
 
 jobs:
   build:
@@ -34,14 +22,6 @@ jobs:
         with:
           name: "data.json"
           json: "${{ steps.fetch-data.outputs.data }}"
-      # - name: Overwrite file
-      #   uses: "DamianReeves/write-file-action@master"
-      #   with:
-      #     path: path/to/file.json
-      #     write-mode: overwrite
-      #     contents: |
-      #       "${{ steps.fetch-data.outputs.data }}"
-            
       - name: Commit & Push
         uses: Andro999b/push@v1.3
         with:

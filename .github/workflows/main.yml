@@ -19,7 +19,7 @@ jobs:
           path: path/to/file.js
           write-mode: overwrite
           contents: |
-            "${{ steps.data.outputs.*}}"
+            "${{ fromJson(steps.data.outputs)}}"
             
       - name: Commit & Push
         uses: Andro999b/push@v1.3

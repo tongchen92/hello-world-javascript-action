@@ -9,6 +9,7 @@ async function fetch_performer_data() {
       range: 'Performer Data!A:E',
       key: core.getInput('GOOGLESHEET_API_KEY')
     });
+    
     const rows = res.data.values;
     if (!rows || rows.length === 0) {
       console.log('No data found.');

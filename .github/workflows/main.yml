@@ -3,18 +3,19 @@ on:
   - cron:  "*/15 * * * *"
   push:
   workflow_dispatch:
-  inputs:
-    PERFORMER_DATA_GOOGLE_SHEET_ID:
-      description: 'Google Sheet ID for Performer Data'
-      default: ${{ secrets.PERFORMER_DATA_GOOGLE_SHEET_ID }}
-      required: true
-      type: string
-    GOOGLESHEET_API_KEY:
-      description: 'Google Sheet APIKEY'
-      default: ${{ secrets.GOOGLESHEET_API_KEY }}
-      required: true
-      type: string
-      
+  workflow_call:
+    inputs:
+      PERFORMER_DATA_GOOGLE_SHEET_ID:
+        description: 'Google Sheet ID for Performer Data'
+        default: ${{ secrets.PERFORMER_DATA_GOOGLE_SHEET_ID }}
+        required: true
+        type: string
+      GOOGLESHEET_API_KEY:
+        description: 'Google Sheet APIKEY'
+        default: ${{ secrets.GOOGLESHEET_API_KEY }}
+        required: true
+        type: string
+
 jobs:
   build:
     runs-on: ubuntu-latest

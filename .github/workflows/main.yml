@@ -3,18 +3,18 @@ on:
   - cron:  "*/15 * * * *"
   push:
   workflow_dispatch:
-  workflow_call:
-    inputs:
-      PERFORMER_DATA_GOOGLE_SHEET_ID:
-        description: 'Google Sheet ID for Performer Data'
-        default: "${{ secrets.PERFORMER_DATA_GOOGLE_SHEET_ID }}"
-        required: true
-        type: string
-      GOOGLESHEET_API_KEY:
-        description: 'Google Sheet APIKEY'
-        default: "${{ secrets.GOOGLESHEET_API_KEY }}"
-        required: true
-        type: string
+  # workflow_call:
+  #   inputs:
+  #     PERFORMER_DATA_GOOGLE_SHEET_ID:
+  #       description: 'Google Sheet ID for Performer Data'
+  #       default: "${{ secrets.PERFORMER_DATA_GOOGLE_SHEET_ID }}"
+  #       required: true
+  #       type: string
+  #     GOOGLESHEET_API_KEY:
+  #       description: 'Google Sheet APIKEY'
+  #       default: "${{ secrets.GOOGLESHEET_API_KEY }}"
+  #       required: true
+  #       type: string
 
 jobs:
   build:
@@ -24,7 +24,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Read Node.js version to install from `.tool-versions`
         id: fetch-data
-        #run: echo '::set-output name=test::green'
+        with:
+          PERFORMER_DATA_GOOGLE_SHEET_ID: ${{ secrets.PERFORMER_DATA_GOOGLE_SHEET_ID }}
+          GOOGLESHEET_API_KEY: ${{ secrets.GOOGLESHEET_API_KEY }}
         uses: tongchen92/hello-world-javascript-action@v1.4
       - name: create-json
         id: create-json

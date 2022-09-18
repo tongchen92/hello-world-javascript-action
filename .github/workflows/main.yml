@@ -1,7 +1,7 @@
 on:
   schedule:
   - cron:  "*/15 * * * *"
-
+  push:
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest

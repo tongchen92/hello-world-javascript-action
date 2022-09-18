@@ -14,13 +14,19 @@ jobs:
         id: fetch-data
         #run: echo '::set-output name=test::green'
         uses: tongchen92/hello-world-javascript-action@v1.4
-      - name: Overwrite file
-        uses: "DamianReeves/write-file-action@master"
-        with:
-          path: path/to/file.json
-          write-mode: overwrite
-          contents: |
-            "${{ steps.fetch-data.outputs.data }}"
+    - name: create-json
+      id: create-json
+      uses: jsdaniell/create-json@1.1.2
+      with:
+        name: "data.json"
+        json: "${{ steps.fetch-data.outputs.data }}"
+      # - name: Overwrite file
+      #   uses: "DamianReeves/write-file-action@master"
+      #   with:
+      #     path: path/to/file.json
+      #     write-mode: overwrite
+      #     contents: |
+      #       "${{ steps.fetch-data.outputs.data }}"
             
       - name: Commit & Push
         uses: Andro999b/push@v1.3

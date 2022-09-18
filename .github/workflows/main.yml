@@ -29,26 +29,3 @@ jobs:
           branch: main
           force: true
           message: 'Overwritten by Github Actions - ${date}'
-# jobs:
-#   hello_world_job:
-#     runs-on: ubuntu-latest
-#     name: A job to say hello
-#     steps:
-#       - name: Hello world action step
-#         id: hello
-#         uses: tongchen92/hello-world-javascript-action@v1.1
-#         with:
-#           who-to-greet: 'Tong Chen'
-#       # Use the output from the `hello` step
-#       - name: Get the output time
-#         run: echo "The time was ${{ steps.hello.outputs.time }}"
-#       - name: switching from HTTPS to SSH
-#         run: git remote set-url origin git@github.com:tongchen92/hello-world-javascript-action.git
-#       - name: stage changed files
-#         run: git add .
-#       - name: commit changed files
-#         run: git commit -m "Auto updating student.json"
-#       - name: fetch from main
-#         run: git fetch origin main
-#       - name: push code to main
-#         run: git push origin HEAD:main

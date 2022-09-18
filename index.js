@@ -1,25 +1,36 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
+const { google } = require('googleapis');
+
+async function fetch_performer_data() {
+    const sheets = google.sheets({version: 'v4'});
+    const res = await sheets.spreadsheets.values.get({
+      spreadsheetId: '1PeOLi7lzddON9tuoh4JCOOjDfIH8G2Op_siEnHQlwyk',
+      range: 'Performer Data!A:E',
+      key: "AIzaSyBjHiYjKaMdeY_IzvErXyq8xX7jRdvsoA8"
+    });
+    const rows = res.data.values;
+    if (!rows || rows.length === 0) {
+      console.log('No data found.');
+      return;
+    }
+    result = []
+    rows.slice(1).forEach((row) => {
+        var performer = new Object();
+        for (const [index, element] of row.entries()) {
+            performer[rows[0][index]] = element
+        }
+        result.push(performer)
+    });
+    return result
+  }
+
+async function set_output(performer_data){
+    let data = JSON.stringify(performer_data);
+    core.setOutput("data", data);
+}
 
 try {
-  // `who-to-greet` input defined in action metadata file
-//   const nameToGreet = core.getInput('who-to-greet');
-//   console.log(`Hello ${nameToGreet}!`);
-//   const time = (new Date()).toTimeString();
-  // Get the JSON webhook payload for the event that triggered the workflow
-//   const payload = JSON.stringify(github.context.payload, undefined, 2)
-
-  let student = { 
-      name: 'Mike',
-      age: 23, 
-      gender: 'Male',
-      department: 'English',
-      car: 'Honda' 
-  };
-   
-  let data = JSON.stringify(student);
-  core.setOutput("test", data);
-  
+    fetch_performer_data().then(set_output)
 } catch (error) {
-  core.setFailed(error.message);
+    core.setFailed(error.message);
 }

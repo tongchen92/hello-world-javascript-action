@@ -17,7 +17,7 @@ jobs:
       - name: Overwrite file
         uses: "DamianReeves/write-file-action@master"
         with:
-          path: path/to/file.js
+          path: path/to/file.json
           write-mode: overwrite
           contents: |
             "${{ steps.fetch-data.outputs.data }}"

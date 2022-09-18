@@ -1,12 +1,13 @@
 const core = require('@actions/core');
+const github = require('@actions/github');
 const { google } = require('googleapis');
 
 async function fetch_performer_data() {
     const sheets = google.sheets({version: 'v4'});
     const res = await sheets.spreadsheets.values.get({
-      spreadsheetId: '1PeOLi7lzddON9tuoh4JCOOjDfIH8G2Op_siEnHQlwyk',
+      spreadsheetId: core.getInput('PERFORMER_DATA_GOOGLE_SHEET_ID'),
       range: 'Performer Data!A:E',
-      key: "AIzaSyBjHiYjKaMdeY_IzvErXyq8xX7jRdvsoA8"
+      key: core.getInput('GOOGLESHEET_API_KEY')
     });
     const rows = res.data.values;
     if (!rows || rows.length === 0) {

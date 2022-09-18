@@ -25,7 +25,7 @@ async function fetch_performer_data() {
   }
 
 async function set_output(performer_data){
-    let data = JSON.stringify(performer_data);
+    // let data = JSON.stringify(performer_data);
     core.setOutput("data", data);
 }
 

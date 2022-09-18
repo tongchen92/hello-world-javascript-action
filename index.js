@@ -25,12 +25,11 @@ async function fetch_performer_data() {
   }
 
 async function set_output(performer_data){
-    // let data = JSON.stringify(performer_data);
-    core.setOutput("data", data);
+    try {
+        core.setOutput("data", performer_data);
+    } catch (error) {
+        core.setFailed(error.message);
+    }
 }
 
-try {
-    fetch_performer_data().then(set_output)
-} catch (error) {
-    core.setFailed(error.message);
-}
+fetch_performer_data().then(set_output)
